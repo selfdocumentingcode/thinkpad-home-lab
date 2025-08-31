@@ -3,7 +3,7 @@ services:
     image: athou/commafeed:latest-h2
     restart: unless-stopped
     volumes:
-      - ./vols/data:/commafeed/data
+      - ./volumes/data:/commafeed/data
     deploy:
       resources:
         limits:
