@@ -33,6 +33,17 @@ services:
   rag_api:
     container_name: !reset
 
+  backup:
+    extends:
+      file: ../dvb/docker-compose.yml
+      service: backup
+    environment:
+      - BACKUP_PREFIX=librechat
+    volumes:
+      - pgdata2:/backup/pgdata2-backup:ro
+      - mongodb-vol:/backup/mongodb-vol-backup:ro
+      - meili-data-vol:/backup/meili-data-vol-backup:ro
+
 volumes:
   mongodb-vol:
   meili-data-vol:
