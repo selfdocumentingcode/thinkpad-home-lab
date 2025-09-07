@@ -1,0 +1,39 @@
+services:
+  api:
+    container_name: !reset
+    ports: !override
+      - '9080:3080'
+    volumes:
+      # - type: bind
+      #   source: ./librechat.yaml
+      #   target: /app/librechat.yaml
+      - ./librechat.yaml:/app/librechat.yaml
+      - ./volumes/images:/app/client/public/images
+      - ./volumes/uploads:/app/uploads
+      - ./volumes/logs:/app/api/logs
+    # Fixes login issue when using p2g1.home on insecure http
+    # Should be removed after Caddy is set up
+    command: npm run backend:dev
+    
+  mongodb:
+    container_name: !reset
+    user: !reset
+    volumes:
+      - mongodb-vol:/data/db
+
+  meilisearch:
+    container_name: !reset
+    user: !reset
+    volumes:
+      - meili-data-vol:/meili_data
+
+  vectordb:
+    container_name: !reset
+
+  rag_api:
+    container_name: !reset
+
+volumes:
+  mongodb-vol:
+  meili-data-vol:
+
