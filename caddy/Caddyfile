@@ -1,0 +1,66 @@
+{
+    # General Options
+    debug
+    #http_port 8080
+    #https_port 8443
+    #http_port {env.DEFAULT_HTTP_PORT}
+    #http_ports {env.DEFAULT_HTTPS_PORT}
+
+    # TLS Options
+    #auto_https disable_certs
+    #auto_https off
+    email bob@lab.home
+    #default_sni lab.lab.home
+}
+
+lab.home {
+    tls /srv/certs/lab-home.crt /srv/certs/lab-home.key
+}
+
+http://*.lab.home *.lab.home:80 {
+    redir https://{host}{uri}
+}
+
+cockpit.lab.home {
+    reverse_proxy host-docker-internal:9090
+}
+
+ha.lab.home {
+    reverse_proxy rp4.lan:8123
+}
+
+homarr.lab.home {
+    reverse_proxy host-docker-internal:7575
+}
+
+librechat.lab.home {
+    reverse_proxy host-docker-internal:9080
+}
+
+glances.lab.home {
+    reverse_proxy host-docker-internal:61208
+}
+
+homepage.lab.home {
+    reverse_proxy host-docker-internal:9300
+}
+
+commafeed.lab.home {
+    reverse_proxy host-docker-internal:9082
+}
+
+freshrss.lab.home {
+    reverse_proxy host-docker-internal:9099
+}
+
+http://test.lab.home,
+https://test.lab.home,
+http://test.lab.home:8080,
+http://test.lab.home:8081 {
+    respond "Hello from test.lab.home"
+}
+
+http:// {
+    respond "Hello from http"
+}
+
