@@ -1,0 +1,57 @@
+source_directories:
+  - /mnt/source/lab-docker-volumes
+
+repositories:
+  - path: /mnt/borg-repository/repo
+
+# one_file_system: true
+
+compression: zlib # good, but slow
+# compression: lz4 # fast, low compression ratio
+
+archive_name_format: 'lab-backup-{now:%Y-%m-%d-%H-%M-%S}'
+# Borg 2 does not require unique archive names
+# edit: apparently it does?
+# archive_name_format: 'lab-backup'
+
+# keep_hourly: 2
+keep_daily: 7
+keep_weekly: 4
+keep_monthly: 12
+keep_yearly: 10
+
+checks:
+  - name: repository
+    frequency: 2 weeks
+  - name: archives
+    frequency: always
+  - name: extract
+    frequency: 2 weeks
+  - name: data
+    frequency: 1 month
+
+commands:
+  - before: everything
+    when:
+      - create
+    run:
+      - echo "Starting a new job."
+
+  - after: everything
+    when:
+      - create
+    run:
+      - echo "Backup created."
+
+  - after: error
+    when:
+      - create
+      - prune
+      - compact
+      - check
+    run:
+      - echo "Error while creating a backup."
+
+# healthchecks:
+#   ping_url: ${BORG_HEALTHCHECK_URL}
+

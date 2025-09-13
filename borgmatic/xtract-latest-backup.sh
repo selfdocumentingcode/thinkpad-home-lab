@@ -1,0 +1,6 @@
+echo "Extracting temp backup at /tmp/latest"
+docker exec -it --env-file .env borgmatic /bin/sh -c "mkdir -p /tmp/latest && borgmatic extract --archive latest --destination /tmp/latest && cd /tmp/latest/mnt/source/lab-docker-volumes; exec sh" 
+
+echo "Removing temp backup at /tmp/latest"
+docker exec --env-file .env borgmatic /bin/sh -c "rm -r /tmp/latest" 
+

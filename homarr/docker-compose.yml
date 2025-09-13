@@ -12,17 +12,6 @@ services:
     environment:
       - DISABLE_UPGRADE_MODAL=true
 
-  backup:
-    extends:
-      file: ../dvb/docker-compose.yml
-      service: backup
-    environment:
-      - BACKUP_PREFIX=homarr
-    volumes:
-      - homarr_configs:/backup/homarr-configs-backup:ro
-      - homarr_data:/backup/homarr-data-backup:ro
-      - homarr_icons:/backup/homarr-icons-backup:ro
-
 volumes:
   homarr_configs:
     external: true

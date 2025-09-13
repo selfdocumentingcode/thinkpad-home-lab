@@ -3,7 +3,6 @@ services:
     image: athou/commafeed:latest-h2
     restart: unless-stopped
     volumes:
-      #- ./volumes/data:/commafeed/data
       - data:/commafeed/data
     deploy:
       resources:
@@ -12,14 +11,5 @@ services:
     ports:
       - 9082:8082
   
-  backup:
-    extends:
-      file: ../dvb/docker-compose.yml
-      service: backup
-    environment:
-      - BACKUP_PREFIX=commafeed
-    volumes:
-      - data:/backup/commafeed-backup:ro
-
 volumes:
   data: 

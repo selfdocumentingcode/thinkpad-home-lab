@@ -1,0 +1,80 @@
+name: borgmatic
+
+services:
+  borgmatic:
+    container_name: borgmatic
+    image: ghcr.io/borgmatic-collective/borgmatic
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Oslo
+      - BORG_PASSPHRASE
+    volumes:
+      - ./config:/etc/borgmatic.d/ 
+
+      - ./volumes/repository:/mnt/borg-repository 
+      - ./volumes/.config/borg:/root/.config/borg 
+      - ./volumes/.ssh:/root/.ssh 
+      - ./volumes/.cache/borg:/root/.cache/borg 
+      - ./volumes/.state/borgmatic:/root/.local/state/borgmatic 
+
+      #caddy
+      - caddy_caddy-config-vol:/mnt/source/lab-docker-volumes/caddy-config:ro
+      - caddy_caddy-data-vol:/mnt/source/lab-docker-volumes/caddy-data:ro
+
+      # commafeed
+      - commafeed_data:/mnt/source/lab-docker-volumes/commafeed-data:ro
+
+      # homarr
+      - homarr_configs:/mnt/source/lab-docker-volumes/homarr-configs:ro
+      - homarr_data:/mnt/source/lab-docker-volumes/homarr-data:ro
+      - homarr_icons:/mnt/source/lab-docker-volumes/homarr-icons:ro
+
+      # librechat
+      - librechat_meili-data-vol:/mnt/source/lab-docker-volumes/librechat-meili-data:ro
+      - librechat_mongodb-vol:/mnt/source/lab-docker-volumes/librechat-mongodb:ro
+      - librechat_pgdata2:/mnt/source/lab-docker-volumes/librechat-pgdata2:ro
+
+      # freshrss
+      - freshrss_freshrss-data:/mnt/source/lab-docker-volumes/freshrss-data:ro
+      - freshrss_freshrss-extensions:/mnt/source/lab-docker-volumes/freshrss-extensions:ro
+      
+
+    # Allow mounting archives through FUSE
+    devices:
+      - /dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      # SELinux
+      - label:disable
+      # AppArmor
+      - apparmor:unconfined
+
+volumes:
+  caddy_caddy-config-vol:
+    external: true
+  caddy_caddy-data-vol:
+    external: true
+
+  commafeed_data:
+    external: true
+
+  homarr_configs:
+    external: true
+  homarr_data:
+    external: true
+  homarr_icons:
+    external: true
+
+  librechat_meili-data-vol:
+    external: true
+  librechat_mongodb-vol:
+    external: true
+  librechat_pgdata2:
+    external: true
+
+  freshrss_freshrss-data:
+    external: true
+  freshrss_freshrss-extensions:
+    external: true
+  
