@@ -1,0 +1,41 @@
+name: mumble
+
+services:
+  mumble-server:
+    image: mumblevoip/mumble-server:latest
+    container_name: mumble-server
+    hostname: mumble-server
+    restart: on-failure
+    ports:
+      - 64738:64738
+      - 64738:64738/udp
+    volumes:
+      - mumble-server-data:/data
+    environment:
+      MUMBLE_CONFIG_welcometext: <br>Welcome to Mumle aka Nelle on Mumble!<br>
+      MUMBLE_CONFIG_serverpassword: ${MUMBLE_CONFIG_serverpassword}
+      MUMBLE_CONFIG_opusthreshold: 0
+#   expose:
+#     - 6502
+
+  mumble-bridge:
+    image: stieneee/mumble-discord-bridge
+    container_name: mumble-bridge
+    hostname: mumble-bridge
+    restart: on-failure
+    environment:
+      MUMBLE_ADDRESS: "mumble-server"
+      MUMBLE_PASSWORD: ${MUMBLE_PASSWORD}
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      DISCORD_GID: "825149115306082314"
+      DISCORD_CID: "1349867911090802810"
+      COMMAND: "mumle"
+      CHAT_BRIDGE: "true"
+      MUMBLE_CHANNEL: "discord-bridge"
+      MUMBLE_INSECURE: "true"
+    depends_on:
+      - mumble-server
+
+volumes:
+  mumble-server-data:
+    name: mumble-server-data
