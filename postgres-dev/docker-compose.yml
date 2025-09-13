@@ -1,0 +1,15 @@
+services:
+  postgres-db:
+    image: postgres:15.5
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hunter2
+    volumes:
+      - postgres-vol-dev:/var/lib/postgresql/data 
+      - ./postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres-vol-dev:
