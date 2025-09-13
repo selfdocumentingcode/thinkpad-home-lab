@@ -1,0 +1,17 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    restart: unless-stopped
+    environment:
+      PUID: ${UID}
+      PGID: ${GID}
+    ports:
+      - '9300:3000'
+    volumes:
+      - homepage_config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - 'com.centurylinklabs.watchtower.enable=true'
+
+volumes:
+  homepage_config:
