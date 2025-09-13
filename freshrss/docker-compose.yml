@@ -1,0 +1,21 @@
+services:
+  freshrss:
+    image: freshrss/freshrss:latest
+    restart: unless-stopped
+    ports:
+      - "9099:80"
+    environment:
+      # Published port if running locally
+      PUBLISHED_PORT: 9099
+      TZ: Europe/Oslo
+      CRON_MIN: '*/30'
+      SERVER_DNS: freshrss.lab.home
+    volumes:
+      - freshrss-data:/var/www/FreshRSS/data
+      - freshrss-extensions:/var/www/FreshRSS/extensions
+
+volumes:
+  freshrss-data:
+    driver: local
+  freshrss-extensions:
+    driver: local
