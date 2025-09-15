@@ -25,9 +25,7 @@ services:
       - commafeed_data:/mnt/source/lab-docker-volumes/commafeed-data:ro
 
       # homarr
-      - homarr_configs:/mnt/source/lab-docker-volumes/homarr-configs:ro
-      - homarr_data:/mnt/source/lab-docker-volumes/homarr-data:ro
-      - homarr_icons:/mnt/source/lab-docker-volumes/homarr-icons:ro
+      - homarr_homarr_appdata:/mnt/source/lab-docker-volumes/homarr-appdata:ro
 
       # librechat
       - librechat_meili-data-vol:/mnt/source/lab-docker-volumes/librechat-meili-data:ro
@@ -59,11 +57,7 @@ volumes:
   commafeed_data:
     external: true
 
-  homarr_configs:
-    external: true
-  homarr_data:
-    external: true
-  homarr_icons:
+  homarr_homarr_appdata:
     external: true
 
   librechat_meili-data-vol:

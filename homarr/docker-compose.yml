@@ -1,22 +1,15 @@
 services:
   homarr:
-    image: ghcr.io/ajnart/homarr:latest
+    image: ghcr.io/homarr-labs/homarr:latest
     restart: unless-stopped
     ports:
       - "7575:7575"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - homarr_configs:/app/data/configs
-      - homarr_data:/data
-      - homarr_icons:/app/public/icons
+      - homarr_appdata:/appdata
     environment:
-      - DISABLE_UPGRADE_MODAL=true
+      - SECRET_ENCRYPTION_KEY
 
 volumes:
-  homarr_configs:
-    external: true
-  homarr_data:
-    external: true
-  homarr_icons:
-    external: true
+  homarr_appdata:
 
