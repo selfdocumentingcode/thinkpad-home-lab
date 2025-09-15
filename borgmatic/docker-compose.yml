@@ -35,6 +35,9 @@ services:
       # freshrss
       - freshrss_freshrss-data:/mnt/source/lab-docker-volumes/freshrss-data:ro
       - freshrss_freshrss-extensions:/mnt/source/lab-docker-volumes/freshrss-extensions:ro
+
+      # homepage
+      - ../homepage/volumes:/mnt/source/lab-docker-volumes/homepage-volumes:ro
       
 
     # Allow mounting archives through FUSE
