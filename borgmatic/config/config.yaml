@@ -4,17 +4,23 @@ source_directories:
 repositories:
   - path: /mnt/borg-repository/repo
 
-# one_file_system: true
+# Allow backing up subdirectories mounted as docker volumes under configured source directory(s)
+one_file_system: false
 
 compression: zlib # good, but slow
 # compression: lz4 # fast, low compression ratio
 
 archive_name_format: 'lab-backup-{now:%Y-%m-%d-%H-%M-%S}'
-# Borg 2 does not require unique archive names
-# edit: apparently it does?
-# archive_name_format: 'lab-backup'
 
-# keep_hourly: 2
+exclude_patterns:
+  - '*/log/*'
+  - '*/logs/*'
+  - '*.log'
+  - '*/cache/*'
+  - '*.cache'
+  - '*/freshrss-data/favicons/*'
+  - '*/librechat-mongodb/diagnostic.data/*'
+
 keep_daily: 7
 keep_weekly: 4
 keep_monthly: 12
