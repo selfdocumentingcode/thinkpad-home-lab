@@ -3,6 +3,9 @@ source_directories:
 
 repositories:
   - path: /mnt/borg-repository/repo
+    label: local
+  - path: ssh://borg@pn50.lan/home/borg/lab
+    label: borg-pn50
 
 # Allow backing up subdirectories mounted as docker volumes under configured source directory(s)
 one_file_system: false
