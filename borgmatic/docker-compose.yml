@@ -17,8 +17,11 @@ services:
       - ./volumes/.ssh:/root/.ssh 
       - ./volumes/.cache/borg:/root/.cache/borg 
       - ./volumes/.state/borgmatic:/root/.local/state/borgmatic 
+    
+      # etc
+      - /etc:/mnt/source/lab-etc:ro
 
-      #caddy
+      # caddy
       - caddy_caddy-config-vol:/mnt/source/lab-docker-volumes/caddy-config:ro
       - caddy_caddy-data-vol:/mnt/source/lab-docker-volumes/caddy-data:ro
 

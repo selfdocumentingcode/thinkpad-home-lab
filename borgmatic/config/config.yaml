@@ -1,5 +1,6 @@
 source_directories:
   - /mnt/source/lab-docker-volumes
+  - /mnt/source/lab-etc
 
 repositories:
   - path: /mnt/borg-repository/repo
