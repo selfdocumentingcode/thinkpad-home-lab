@@ -16,7 +16,6 @@ endpoints:
     #titlePrompt: "Create a brief, descriptive title for the following conversation:\n\n{convo}\n\nTitle:"
     titlePrompt: |
       Analyze this conversation and provide:
-      1. The detected language of the conversation
-      2. A concise title in the detected language (5 words or less, no punctuation or quotation)
-      3. Always provide a relevant emoji at the start of the title
+      1. A concise title in the detected language (5 words or less, no punctuation or quotation)
+      2. Always provide a relevant emoji at the start of the title
       {convo}
