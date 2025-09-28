@@ -1,6 +1,6 @@
 {
     # General Options
-    debug
+    # debug
     #http_port 8080
     #https_port 8443
     #http_port {env.DEFAULT_HTTP_PORT}
@@ -29,9 +29,9 @@ ha.lab.home {
     reverse_proxy rp4.lan:8123
 }
 
-homarr.lab.home {
-    reverse_proxy host-docker-internal:7575
-}
+# homarr.lab.home {
+#     reverse_proxy host-docker-internal:7575
+# }
 
 librechat.lab.home {
     reverse_proxy host-docker-internal:9080
@@ -45,22 +45,31 @@ homepage.lab.home {
     reverse_proxy host-docker-internal:9300
 }
 
-commafeed.lab.home {
-    reverse_proxy host-docker-internal:9082
-}
+# commafeed.lab.home {
+#     reverse_proxy host-docker-internal:9082
+# }
 
 freshrss.lab.home {
     reverse_proxy host-docker-internal:9099
 }
 
+gotify.lab.home,
+gotify.lab.home:80 {
+    reverse_proxy host-docker-internal:9480
+}
+
 http://test.lab.home,
-https://test.lab.home,
 http://test.lab.home:8080,
 http://test.lab.home:8081 {
-    respond "Hello from test.lab.home"
+    respond "Hello from http://test.lab.home"
+}
+
+https://test.lab.home,
+https://test.lab.home:8443 {
+    respond "Hello from https://test.lab.home"
 }
 
 http:// {
-    respond "Hello from http"
+    respond "Hello from Caddy http"
 }
 
