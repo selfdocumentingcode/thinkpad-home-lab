@@ -62,6 +62,19 @@ commands:
     run:
       - echo "Error while creating a backup."
 
+apprise:
+  services:
+    - url: gotify://gotify.lab.home/${GOTIFY_TOKEN}
+      label: gotify
+
+  send_logs: false
+
+  states:
+    - start
+    - finish
+    - fail
+    # - log
+
 # healthchecks:
 #   ping_url: ${BORG_HEALTHCHECK_URL}
 
