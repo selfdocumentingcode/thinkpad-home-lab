@@ -17,6 +17,9 @@ services:
       - ./volumes/.ssh:/root/.ssh 
       - ./volumes/.cache/borg:/root/.cache/borg 
       - ./volumes/.state/borgmatic:/root/.local/state/borgmatic 
+
+      # Hacky way to pass env vars to cronjob
+      - .env:/root/docker.env
     
       # etc
       - /etc:/mnt/source/lab-etc:ro

@@ -1,1 +1,1 @@
-4 4 * * * /usr/local/bin/borgmatic --stats -v 0 2>&1
+4 4 * * * set -a; . /root/docker.env; set +a; /usr/local/bin/borgmatic --stats -v 0 2>&1
