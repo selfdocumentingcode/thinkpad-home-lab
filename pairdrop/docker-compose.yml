@@ -1,0 +1,11 @@
+services:
+  pairdrop:
+    image: lscr.io/linuxserver/pairdrop:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Oslo
+      - WS_FALLBACK=false
+    ports:
+      - 9500:3000
+    restart: unless-stopped
