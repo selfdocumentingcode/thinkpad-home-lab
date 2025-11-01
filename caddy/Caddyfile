@@ -58,6 +58,11 @@ gotify.lab.home:80 {
     reverse_proxy host-docker-internal:9480
 }
 
+ntfy.lab.home,
+ntfy.lab.home:80 {
+	reverse_proxy host-docker-internal:9490
+}
+
 pairdrop.lab.home {
 	reverse_proxy host-docker-internal:9500
 }

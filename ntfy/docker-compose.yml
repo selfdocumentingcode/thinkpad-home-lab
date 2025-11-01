@@ -1,0 +1,16 @@
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    restart: unless-stopped
+    command:
+      - serve
+    environment:
+      - TZ=Europe/Oslo    # optional: set desired timezone
+    volumes:
+      - ntfy-cache:/var/cache/ntfy
+      - ./config:/etc/ntfy
+    ports:
+      - 9490:80
+
+volumes:
+  ntfy-cache:
