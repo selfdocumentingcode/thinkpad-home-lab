@@ -62,18 +62,42 @@ commands:
     run:
       - echo "Error while creating a backup."
 
-apprise:
-  services:
-    - url: gotify://gotify.lab.home/${GOTIFY_TOKEN}
-      label: gotify
+ntfy:
+  topic: borgmatic
+  server: http://ntfy.lab.home
 
-  send_logs: false
+  start:
+    title: Starting backup!
+    message: Borgmatic backup is starting.
+    priority: min
+
+  finish:
+    title: Finished backup!
+    message: Borgmatic backup has finished.
+    priority: min
+
+  fail:
+    title: Failed backup!
+    message: Borgmatic backup has failed.
+    priority: max
 
   states:
     - start
     - finish
     - fail
-    # - log
+
+# apprise:
+#   services:
+#     - url: gotify://gotify.lab.home/${GOTIFY_TOKEN}
+#       label: gotify
+
+#   send_logs: false
+
+#   states:
+#     - start
+#     - finish
+#     - fail
+#     # - log
 
 # healthchecks:
 #   ping_url: ${BORG_HEALTHCHECK_URL}
