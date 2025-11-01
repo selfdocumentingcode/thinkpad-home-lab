@@ -29,9 +29,9 @@ ha.lab.home {
     reverse_proxy rp4.lan:8123
 }
 
-# homarr.lab.home {
-#     reverse_proxy host-docker-internal:7575
-# }
+homarr.lab.home {
+    reverse_proxy host-docker-internal:7575
+}
 
 librechat.lab.home {
     reverse_proxy host-docker-internal:9080
