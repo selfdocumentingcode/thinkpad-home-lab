@@ -6,9 +6,13 @@ services:
       - serve
     environment:
       - TZ=Europe/Oslo    # optional: set desired timezone
+      - NTFY_BASE_URL=https://ntfy.lab.home
+      - NTFY_BEHIND_PROXY=true
+      - NTFY_CACHE_FILE=/var/cache/ntfy/cache.db
+      - NTFY_ATTACHMENT_CACHE_DIR=/var/cache/ntfy/attachments
+      # - NTFY_DEBUG=true
     volumes:
       - ntfy-cache:/var/cache/ntfy
-      - ./config:/etc/ntfy
     ports:
       - 9490:80
 

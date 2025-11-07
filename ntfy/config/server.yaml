@@ -1,5 +1,0 @@
-base-url: "https://ntfy.lab.home"
-listen-http: ":2586"
-cache-file: "/var/cache/ntfy/cache.db"
-attachment-cache-dir: "/var/cache/ntfy/attachments"
-behind-proxy: true
