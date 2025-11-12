@@ -1,0 +1,9 @@
+default-host: http://ntfy.lab.home
+
+subscribe:
+  - topic: borgmatic
+    command: |
+      MESSAGE_F="[$(date '+%Y-%m-%d %H:%M:%S')] Message received: $message"
+      echo "$MESSAGE_F"
+      echo "$MESSAGE_F" >> /var/log/ntfy/log-borgmatic.txt
+      

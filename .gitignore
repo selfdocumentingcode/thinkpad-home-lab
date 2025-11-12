@@ -1,4 +1,5 @@
 */volumes/*
+*/logs/*
 */repo
 /dvb/backups
 .env
