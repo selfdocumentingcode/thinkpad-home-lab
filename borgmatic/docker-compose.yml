@@ -31,9 +31,6 @@ services:
       # commafeed
       - commafeed_data:/mnt/source/lab-docker-volumes/commafeed-data:ro
 
-      # homarr
-      - homarr_homarr_appdata:/mnt/source/lab-docker-volumes/homarr-appdata:ro
-
       # librechat
       - librechat_meili-data-vol:/mnt/source/lab-docker-volumes/librechat-meili-data:ro
       - librechat_mongodb-vol:/mnt/source/lab-docker-volumes/librechat-mongodb:ro
