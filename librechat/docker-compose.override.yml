@@ -1,6 +1,7 @@
 services:
   api:
     container_name: !reset
+    image: ghcr.io/danny-avila/librechat:latest
     ports: !override
       - '9080:3080'
     volumes:
